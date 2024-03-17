@@ -8,7 +8,7 @@ connectDB()
   .then(() => {
     app.listen(8080, () => {
       console.log(
-        "Music Art App Runing Sucessfully on https://localhost:8080 ⚙️  👌"
+        `Music Art App Runing Sucessfully on https://localhost:${process.env.PORT} ⚙️  👌`
       );
     });
   })
