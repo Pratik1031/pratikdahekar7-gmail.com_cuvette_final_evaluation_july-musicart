@@ -10,6 +10,7 @@ app.use(
     credentials: true,
   })
 );
+
 // app configs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,7 +22,9 @@ app.get("/", (req, res) => {
 });
 
 const user_routes = require("./routes/user.routes");
+const product_routes = require("./routes/product.routes");
 
 app.use("/api/V1/users", user_routes);
+app.use("/api/V1/products", product_routes);
 
 module.exports = app;

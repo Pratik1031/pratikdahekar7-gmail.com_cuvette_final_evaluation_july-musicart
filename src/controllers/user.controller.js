@@ -73,9 +73,9 @@ const login = asyncHandler(async (req, res) => {
     3. compare password with db 
    */
 
-  const { email, mobileNo, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = await User.findOne({ email, mobileNo }).select("+password");
+  const user = await User.findOne({ email }).select("+password");
 
   if (!user) {
     throw new ApiError(400, "User is Not Registered , Please Signup");
@@ -104,10 +104,13 @@ const login = asyncHandler(async (req, res) => {
     .status(200)
     .cookie("access_token", access_token, options)
     .json(
-      new ApiResponse(
-        201,
-        { user: logged_user, access_token },
-        "Log In Sucessfully"
+      new api_response(
+        200,
+        {
+          user: logged_user,
+          access_token,
+        },
+        "User logged In Successfully"
       )
     );
 });
